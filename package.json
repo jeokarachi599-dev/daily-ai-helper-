@@ -1,0 +1,9 @@
+{
+  "name": "daily-ai-helper",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Daily AI Helper — multilingual AI assistant (chat, write, translate, images, voice, file analysis) powered by Google Gemini.",
+  "scripts": { "start": "node server.js" },
+  "dependencies": { "express": "^4.19.2" },
+  "engines": { "node": ">=18" }
+}
