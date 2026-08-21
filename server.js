@@ -16,7 +16,7 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 const GEMINI_KEY = process.env.GEMINI_API_KEY || '';
 const BASE = 'https://generativelanguage.googleapis.com/v1beta';
-const CHAT_MODELS = ['gemini-2.5-flash', 'gemini-2.5-pro'];
+const CHAT_MODELS = ['gemini-1.5-flash', 'gemini-1.5-pro'];
 
 app.use(express.json({ limit: '15mb' }));
 app.use((req, res, next) => {
@@ -45,7 +45,7 @@ app.post('/api/chat', async (req, res) => {
   if (!GEMINI_KEY) return res.status(503).json({ error: 'SERVER_KEY_MISSING' });
   if (limited(req)) return res.status(429).json({ error: 'RATE_LIMITED' });
   const b = req.body || {};
-  const model = CHAT_MODELS.includes(b.model) ? b.model : 'gemini-2.5-flash';
+  const model = CHAT_MODELS.includes(b.model) ? b.model : 'gemini-1.5-flash';
   let upstream;
   try {
     upstream = await fetch(BASE + '/models/' + model + ':streamGenerateContent?alt=sse', {
